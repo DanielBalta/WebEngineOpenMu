@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS data.webengine_vote_sites (
 -- WebEngine Vote Logs
 CREATE TABLE IF NOT EXISTS data.webengine_vote_logs (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
     vote_site_id INTEGER REFERENCES data.webengine_vote_sites(id),
     ip_address INET,
     voted_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS data.webengine_vote_logs (
 -- WebEngine Credits Logs
 CREATE TABLE IF NOT EXISTS data.webengine_credits_logs (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
-    character_id UUID REFERENCES data."Character"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
+    character_id UUID REFERENCES data."Character"("Id"),
     amount INTEGER NOT NULL,
     transaction_type VARCHAR(50) NOT NULL, -- 'earned', 'spent', 'admin_add', 'admin_remove'
     description TEXT,
@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS data.webengine_credits_logs (
 -- WebEngine Bans
 CREATE TABLE IF NOT EXISTS data.webengine_bans (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
-    character_id UUID REFERENCES data."Character"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
+    character_id UUID REFERENCES data."Character"("Id"),
     banned_by VARCHAR(50) NOT NULL,
     ban_reason TEXT NOT NULL,
     ban_type VARCHAR(20) NOT NULL, -- 'account', 'character', 'ip'
@@ -86,8 +86,8 @@ CREATE TABLE IF NOT EXISTS data.webengine_blocked_ips (
 -- WebEngine PayPal Transactions
 CREATE TABLE IF NOT EXISTS data.webengine_paypal_transactions (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
-    character_id UUID REFERENCES data."Character"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
+    character_id UUID REFERENCES data."Character"("Id"),
     transaction_id VARCHAR(100) NOT NULL UNIQUE,
     amount DECIMAL(10,2) NOT NULL,
     currency VARCHAR(3) DEFAULT 'USD',
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS data.webengine_paypal_transactions (
 -- WebEngine Password Change Requests
 CREATE TABLE IF NOT EXISTS data.webengine_password_requests (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
     verification_key VARCHAR(100) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL,
     requested_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS data.webengine_password_requests (
 -- WebEngine Email Verification
 CREATE TABLE IF NOT EXISTS data.webengine_email_verification (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
     verification_key VARCHAR(100) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS data.webengine_email_verification (
 -- WebEngine Account Country (for statistics)
 CREATE TABLE IF NOT EXISTS data.webengine_account_country (
     id SERIAL PRIMARY KEY,
-    account_id UUID REFERENCES data."Account"(id),
+    account_id UUID REFERENCES data."Account"("Id"),
     country_code VARCHAR(2) NOT NULL,
     country_name VARCHAR(100) NOT NULL,
     detected_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
