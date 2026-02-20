@@ -19,6 +19,18 @@ Admins running OpenMU (modern) who want WebEngine CMS to use OpenMU’s PostgreS
 
 Tip: If you previously used the built‑in PHP server or helper scripts, they are no longer needed. Use XAMPP Apache as above.
 
+## For Linux Systems
+1) Enable the Apache mod_rewrite module (sudo a2enmod rewrite)
+   2) Configure Apache to allow .htaccess overrides (/etc/apache2/apache2.conf)  
+      <Directory /var/www/html/>  
+        Options Indexes FollowSymLinks  
+        AllowOverride All  
+        Require all granted  
+      <\/Directory>  
+3) sudo service apache2 restart
+
+
+
 ## Fresh Installation (Recommended)
 1. Requirements: ensure pdo_pgsql passes.
 2. Database Connection (PostgreSQL defaults)
