@@ -21,12 +21,12 @@ Tip: If you previously used the built‑in PHP server or helper scripts, they ar
 
 ## For Linux Systems
 1) Enable the Apache mod_rewrite module (sudo a2enmod rewrite)
-   2) Configure Apache to allow .htaccess overrides (/etc/apache2/apache2.conf)  
-      <Directory /var/www/html/>  
-        Options Indexes FollowSymLinks  
-        AllowOverride All  
-        Require all granted  
-      <\/Directory>  
+2) Configure Apache to allow .htaccess overrides (/etc/apache2/apache2.conf)  
+   <Directory /var/www/html/>  
+     Options Indexes FollowSymLinks  
+     AllowOverride All  
+     Require all granted  
+   <\/Directory>  
 3) sudo service apache2 restart
 
 
